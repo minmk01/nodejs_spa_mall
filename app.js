@@ -12,7 +12,9 @@ const requestMiddleware = (req, res, next) => {
     next();  
 };
 
-app.use(express.json()); 
+app.use(express.static("static"));
+app.use(express.json()); //body 데이터를 해석해주는 미들웨어
+app.use(express.urlencoded()); // 4-7강. 프론트엔드 측 3번째 요구사항에 의해 추가한 코드.
 app.use(requestMiddleware);
 
 app.use("/api", [goodsRouter]); //경로가 /api가 맞으면 goodsRouter로 실행됨. routes폴더의 goods.js 파일 안 router 코드가 실행됨.
